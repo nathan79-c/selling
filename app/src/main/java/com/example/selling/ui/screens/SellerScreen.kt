@@ -12,8 +12,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -29,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,48 +45,61 @@ fun SellerProfileScreen(
     products: List<Product>,
     onProductClick: (Product) -> Unit = {}
 ) {
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Photo du vendeur
-        Image(
-            painter = painterResource(id = seller.profileImageRes),
-            contentDescription = seller.name,
-            modifier = Modifier
-                .size(100.dp)
-                .clip(CircleShape)
-                .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
-        )
+        item {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                // Photo du vendeur
+                Image(
+                    painter = painterResource(id = seller.profileImageRes),
+                    contentDescription = seller.name,
+                    modifier = Modifier
+                        .size(100.dp)
+                        .clip(CircleShape)
+                        .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
+                )
 
-        Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
-        // Nom du vendeur
-        Text(
-            text = seller.name,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold
-        )
+                // Nom du vendeur
+                Text(
+                    text = seller.name,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
+                )
 
-        Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(24.dp))
+            }
+        }
 
         // Grille de produits
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
-            modifier = Modifier.fillMaxHeight(),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            contentPadding = PaddingValues(bottom = 100.dp)
-        ) {
-            items(products) { product ->
-                SellerProductCard(product = product, onClick = { onProductClick(product) })
+        item {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(3),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(max = 1000.dp), // fixe le problème de contrainte infinie
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = PaddingValues(bottom = 100.dp)
+            ) {
+                items(products) { product ->
+                    SellerProductCard(
+                        product = product,
+                        onClick = { onProductClick(product) }
+                    )
+                }
             }
         }
     }
 }
+
 
 @Composable
 fun SellerProductCard(product: Product, onClick: () -> Unit) {
@@ -114,7 +130,11 @@ fun SellerProductCard(product: Product, onClick: () -> Unit) {
                 style = MaterialTheme.typography.labelMedium,
                 fontWeight = FontWeight.Bold
             )
-
+            Text(
+                text = product.status,
+                style = MaterialTheme.typography.labelSmall,
+                color = if (product.status.lowercase() == "disponible") Color(0xFF388E3C) else Color.Gray
+            )
         }
     }
 }
