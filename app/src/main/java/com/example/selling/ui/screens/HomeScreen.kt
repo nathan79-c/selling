@@ -144,8 +144,11 @@ data class Product(
     val id: Int,
     val name: String,
     val price: Int,
-    val imageRes: Int
+    val imageRes: Int,
+    val description: String = "", // Valeur par défaut
+    val status: String = "Disponible" // Valeur par défaut
 )
+
 
 val sampleProducts = listOf(
     Product(1, "Casque Audio", 15000, R.drawable.product1),
