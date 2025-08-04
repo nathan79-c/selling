@@ -163,8 +163,8 @@ fun HomeScreenPreview() {
     val sampleProducts = listOf(
         Product(1, "Casque Audio", 15000, R.drawable.product2),
         Product(2, "Montre Luxe", 30000, R.drawable.product1),
-        Product(3, "Chaussures", 25000, R.drawable.product2),
-        Product(4, "Sac à dos", 18000, R.drawable.product1),
+        Product(3, "Chaussures", 25000, R.drawable.product3),
+        Product(4, "Sac à dos", 18000, R.drawable.product4),
     )
 
     HomeScreen(
