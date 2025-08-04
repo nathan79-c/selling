@@ -1,4 +1,4 @@
-package com.example.selling.ui.screens
+package com.example.selling.ui.screens.profil
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,10 +18,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -38,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.selling.R
+import com.example.selling.ui.screens.product.Product
 
 @Composable
 fun SellerProfileScreen(
@@ -150,12 +148,12 @@ fun SellerProfileScreenPreview() {
     val seller = Seller("Nathan Tech", R.drawable.me)
 
     val products = listOf(
-        Product(1, "Clavier Gamer", 20000,  R.drawable.product2),
-        Product(2, "Écran 4K", 120000,  R.drawable.product1),
-        Product(3, "Casque", 18000,  R.drawable.product2),
-        Product(4, "Souris sans fil", 9000,  R.drawable.product1),
-        Product(5, "Tapis RGB", 5000,  R.drawable.product2),
-        Product(6, "Webcam HD", 25000,  R.drawable.product1)
+        Product(1, "Clavier Gamer", 20000, R.drawable.product2),
+        Product(2, "Écran 4K", 120000, R.drawable.product1),
+        Product(3, "Casque", 18000, R.drawable.product2),
+        Product(4, "Souris sans fil", 9000, R.drawable.product1),
+        Product(5, "Tapis RGB", 5000, R.drawable.product2),
+        Product(6, "Webcam HD", 25000, R.drawable.product1)
     )
 
     SellerProfileScreen(seller = seller, products = products)

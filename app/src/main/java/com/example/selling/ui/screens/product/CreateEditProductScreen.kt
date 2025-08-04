@@ -1,4 +1,4 @@
-package com.example.selling.ui.screens
+package com.example.selling.ui.screens.product
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

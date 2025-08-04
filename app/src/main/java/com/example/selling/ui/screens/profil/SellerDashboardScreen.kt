@@ -1,4 +1,4 @@
-package com.example.selling.ui.screens
+package com.example.selling.ui.screens.profil
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.selling.R
+import com.example.selling.ui.screens.product.Product
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -125,8 +126,8 @@ fun ProductCard(
 fun SellerDashboardPreview() {
     val seller = Seller("Nathan", R.drawable.me)
     val products = listOf(
-        Product(1, "Casque Audio", 20000,  R.drawable.product1),
-        Product(2, "Clavier RGB", 15000,  R.drawable.product2)
+        Product(1, "Casque Audio", 20000, R.drawable.product1),
+        Product(2, "Clavier RGB", 15000, R.drawable.product2)
     )
 
     SellerDashboardScreen(

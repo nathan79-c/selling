@@ -1,4 +1,4 @@
-package com.example.selling.ui.screens
+package com.example.selling.ui.screens.profil
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
