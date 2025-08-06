@@ -8,3 +8,15 @@ data class Product(
     val description: String = "", // Valeur par défaut
     val status: String = "Disponible" // Valeur par défaut
 )
+
+object ProductMapper {
+
+    // Convert ENtity to Model
+    fun toModel(){
+
+    }
+
+    fun toEntity(){
+
+    }
+}

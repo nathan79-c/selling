@@ -29,8 +29,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun SignUpScreen(
-    onSignInClick: () -> Unit = {},
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onSignInClick: () -> Unit = {}
+
 ) {
     Column(
         modifier
