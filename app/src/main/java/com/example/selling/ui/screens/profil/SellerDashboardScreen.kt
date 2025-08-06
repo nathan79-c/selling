@@ -39,7 +39,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.selling.R
-import com.example.selling.ui.screens.product.Product
+import com.example.selling.data.model.Product
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

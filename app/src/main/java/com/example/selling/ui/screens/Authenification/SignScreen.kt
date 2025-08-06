@@ -1,5 +1,6 @@
 package com.example.selling.ui.screens.Authenification
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,10 +12,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
+
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -22,10 +22,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.selling.R
 
 @Composable
 fun SignUpScreen(
@@ -44,12 +46,12 @@ fun SignUpScreen(
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             // Logo
-            Icon(
-                imageVector = Icons.Default.Person,
+            Image(
+                painter = painterResource(R.drawable.sellinglogo),
                 contentDescription = "App Logo",
-                tint = Color(0xFF833AB4),
+                alignment = Alignment.Center,
                 modifier = Modifier
-                    .size(72.dp)
+                    .size(140.dp)
                     .padding(bottom = 24.dp)
             )
 
