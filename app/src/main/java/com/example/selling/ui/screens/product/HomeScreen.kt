@@ -41,6 +41,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.selling.R
+import com.example.selling.data.dataSource.sampleProducts
+import com.example.selling.data.model.Product
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -140,32 +142,15 @@ fun ProductCard(product: Product, onClick: () -> Unit) {
     }
 }
 
-data class Product(
-    val id: Int,
-    val name: String,
-    val price: Int,
-    val imageRes: Int,
-    val description: String = "", // Valeur par défaut
-    val status: String = "Disponible" // Valeur par défaut
-)
 
 
-val sampleProducts = listOf(
-    Product(1, "Casque Audio", 15000, R.drawable.product1),
-    Product(2, "Montre Luxe", 30000, R.drawable.product2),
-    Product(3, "Chaussures", 25000, R.drawable.product1),
-    Product(4, "Sac à dos", 18000, R.drawable.product2),
-)
+
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun HomeScreenPreview() {
-    val sampleProducts = listOf(
-        Product(1, "Casque Audio", 15000, R.drawable.product2),
-        Product(2, "Montre Luxe", 30000, R.drawable.product1),
-        Product(3, "Chaussures", 25000, R.drawable.product3),
-        Product(4, "Sac à dos", 18000, R.drawable.product4),
-    )
+
 
     HomeScreen(
         userName = "Nathan",
