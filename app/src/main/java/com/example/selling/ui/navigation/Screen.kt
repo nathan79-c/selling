@@ -27,6 +27,11 @@ sealed interface Screen {
     @Serializable
     data object Login: Screen
     @Serializable
-    data object Sign:Screen
+    data object SignUp:Screen
 
+}
+
+sealed interface GraphRoute{
+    @Serializable data object AuthGraph: GraphRoute
+    @Serializable data object MainGraph: GraphRoute
 }
