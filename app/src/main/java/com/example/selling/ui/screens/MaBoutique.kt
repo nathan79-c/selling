@@ -36,3 +36,12 @@ fun NavGraphBuilder.authGraph(navController: NavController){
         }
     }
 }
+
+fun NavGraphBuilder.mainGraph(navController: NavController){
+    navigation<GraphRoute.MainGraph>(startDestination = Screen.Home){
+        composable<Screen.Home>{
+
+        }
+
+    }
+}
