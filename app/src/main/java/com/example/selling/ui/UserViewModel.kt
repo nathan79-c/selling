@@ -1,6 +1,8 @@
 package com.example.selling.ui
 
-class UserViewModel {
+import androidx.lifecycle.ViewModel
+
+class UserViewModel: ViewModel() {
 }
 sealed class UserUiState{
     data object IsLogin: UserUiState()
