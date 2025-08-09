@@ -1,4 +1,4 @@
-package com.example.selling.ui
+package com.example.selling.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.example.selling.data.model.Product
