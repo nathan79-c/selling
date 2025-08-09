@@ -108,6 +108,23 @@ dependencies {
     // ViewModel integration with Navigation3
     implementation("androidx.lifecycle:lifecycle-viewmodel-navigation3:1.0.0-alpha04")
 
+    // KOIN injection of dependencies
+
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    // Navigation Graph
+    implementation(libs.koin.androidx.navigation)
+// App Startup
+    implementation(libs.koin.androidx.startup)
+
+    implementation(libs.koin.compose)
+    implementation(libs.koin.compose.viewmodel)
+    implementation(libs.koin.compose.viewmodel.navigation)
+
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.androidx.compose.navigation)
+
 
 
 
