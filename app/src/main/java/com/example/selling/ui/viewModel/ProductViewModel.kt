@@ -15,7 +15,7 @@ class ProductViewModel(private val productRepository: ProductRepository): ViewMo
 
 sealed class ProductUiState{
     data object Loading: ProductUiState()
-    data class Success(val movies: List<Product>): ProductUiState()
+    data class Success(val movies: List<Product> = emptyList()): ProductUiState()
     data class Error(val message: String): ProductUiState()
 
 }
