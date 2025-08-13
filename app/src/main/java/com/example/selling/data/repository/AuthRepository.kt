@@ -51,12 +51,3 @@ sealed class AuthResult<out T> {
     data class Error(val message: String?, val cause: Throwable? = null) : AuthResult<Nothing>()
 }
 
-data class AuthUiState(
-    val email: String = "",
-    val password: String = "",
-    val confirmPassword: String = "",
-    val isLoading: Boolean = false,
-    val errorMessage: String? = null,
-    val isAuthenticated: Boolean = false,
-    val userId: String? = null
-)
