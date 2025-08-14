@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "647076785681",
+    "project_id": "selling-dd21e",
+    "storage_bucket": "selling-dd21e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647076785681:android:4599b928f0ee696f694bb0",
+        "android_client_info": {
+          "package_name": "com.example.selling"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCozhtopa_ykro5JoOefxn-OMi9HYAFUCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
