@@ -12,11 +12,12 @@ import com.example.selling.ui.navigation.Screen
 import com.example.selling.ui.screens.Authenification.LoginScreen
 import com.example.selling.ui.screens.Authenification.SignUpScreen
 import com.example.selling.ui.viewModel.AuthViewModel
-import org.koin.compose.viewmodel.koinViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun BoutiqueApp() {
 
+    val authViewModel: AuthViewModel = koinViewModel()
     val navController = rememberNavController()
 
 
@@ -25,6 +26,7 @@ fun BoutiqueApp() {
         startDestination = "",
 
     ) {
+
         composable<Screen.Home> {
 
 
