@@ -18,7 +18,7 @@ import org.koin.compose.viewmodel.koinViewModel
 fun BoutiqueApp() {
 
     val navController = rememberNavController()
-    val authViewModel : AuthViewModel = koinViewModel()
+
 
         NavHost(
         navController = navController,
@@ -26,13 +26,15 @@ fun BoutiqueApp() {
 
     ) {
         composable<Screen.Home> {
-            val authState = authViewModel.state
+
 
         }
     }
 }
 
-fun NavGraphBuilder.authGraph(navController: NavController){
+fun NavGraphBuilder.authGraph(navController: NavController,authViewModel: AuthViewModel){
+
+    val authState = authViewModel.state
     navigation<GraphRoute.AuthGraph>(startDestination = Screen.Login){
         composable<Screen.Login>{
             LoginScreen {  }
