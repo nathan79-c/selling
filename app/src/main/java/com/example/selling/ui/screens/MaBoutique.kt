@@ -11,17 +11,23 @@ import com.example.selling.ui.navigation.GraphRoute
 import com.example.selling.ui.navigation.Screen
 import com.example.selling.ui.screens.Authenification.LoginScreen
 import com.example.selling.ui.screens.Authenification.SignUpScreen
+import com.example.selling.ui.viewModel.AuthViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun BoutiqueApp() {
 
     val navController = rememberNavController()
+    val authViewModel : AuthViewModel = koinViewModel()
 
-    NavHost(
+        NavHost(
         navController = navController,
         startDestination = "",
+
     ) {
         composable<Screen.Home> {
+            val authState = authViewModel.state
+
         }
     }
 }
