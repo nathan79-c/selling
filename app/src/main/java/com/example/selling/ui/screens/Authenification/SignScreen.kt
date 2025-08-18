@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -28,12 +29,19 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.selling.R
+import com.example.selling.ui.viewModel.AuthUiState
+import kotlinx.coroutines.flow.StateFlow
+import androidx.compose.runtime.collectAsState
 
 @Composable
 fun SignUpScreen(
-    modifier: Modifier = Modifier,
-    onSignInClick: () -> Unit = {}
-
+    uiState: StateFlow<AuthUiState>,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    onConfirmPasswordChange: (String) -> Unit,
+    onSignUpClick: () -> Unit,
+    onSignInClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier
@@ -55,30 +63,20 @@ fun SignUpScreen(
                     .padding(bottom = 24.dp)
             )
 
-            // Username
+            // ⚡ Email
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
-                label = { Text("Nom d'utilisateur") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Email
-            OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = uiState.collectAsState().value.email,
+                onValueChange = onEmailChange,
                 label = { Text("Adresse email") },
                 modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Password
+            // ⚡ Password
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = uiState.collectAsState().value.password,
+                onValueChange = onPasswordChange,
                 label = { Text("Mot de passe") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
@@ -86,10 +84,10 @@ fun SignUpScreen(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Confirm Password
+            // ⚡ Confirm Password
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = uiState.collectAsState().value.confirmPassword,
+                onValueChange = onConfirmPasswordChange,
                 label = { Text("Confirmer le mot de passe") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
@@ -97,18 +95,36 @@ fun SignUpScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Create Account Button
+            // Bouton d'inscription
             Button(
-                onClick = { /* TODO: Handle sign up */ },
+                onClick = onSignUpClick,
+                enabled = !uiState.collectAsState().value.isLoading,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Text("Créer un compte")
+                if (uiState.collectAsState().value.isLoading) {
+                    CircularProgressIndicator(
+                        color = Color.White,
+                        modifier = Modifier.size(20.dp)
+                    )
+                } else {
+                    Text("Créer un compte")
+                }
+            }
+
+            // ⚡ Message d'erreur (si existe)
+            uiState.collectAsState().value.errorMessage?.let { msg ->
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(
+                    text = msg,
+                    color = Color.Red,
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Already have an account?
+            // Déjà un compte ?
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -133,10 +149,11 @@ fun SignUpScreen(
     }
 }
 
+
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun SignUpScreenPreview() {
     MaterialTheme {
-        SignUpScreen()
+       // SignUpScreen()
     }
 }

@@ -3,7 +3,8 @@ package com.example.selling.ui.viewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.selling.data.repository.AuthRepository
+
+import com.example.selling.data.repository.abstract_interface.AuthRepository
 import com.example.selling.data.repository.AuthResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

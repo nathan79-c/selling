@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.selling.ui.screens.Authenification.SignUpScreen
-import com.example.selling.ui.screens.product.HomeScreenPreview
+import com.example.selling.ui.screens.BoutiqueApp
 import com.example.selling.ui.theme.SellingTheme
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SellingTheme {
-                SignUpScreen()
+                BoutiqueApp()
             }
         }
     }

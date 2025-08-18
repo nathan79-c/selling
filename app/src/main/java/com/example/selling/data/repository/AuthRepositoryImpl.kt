@@ -4,7 +4,7 @@ import com.example.selling.data.repository.abstract_interface.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
 
-class AuthRepository(private val auth: FirebaseAuth): AuthRepository {
+class AuthRepositoryImpl(private val auth: FirebaseAuth): AuthRepository {
 
     override suspend fun signUp(email: String, password: String): AuthResult<String>{
         return try {
