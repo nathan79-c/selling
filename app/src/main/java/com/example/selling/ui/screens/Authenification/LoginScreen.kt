@@ -13,11 +13,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,20 +31,33 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.selling.R
+import com.example.selling.ui.navigation.GraphRoute
 import com.example.selling.ui.viewModel.AuthUiState
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun LoginScreen(
     uiState: StateFlow<AuthUiState>,
-    conectMail: (String)->Unit,
-    connectPassword: (String)->Unit,
+    conectMail: (String) -> Unit,
+    connectPassword: (String) -> Unit,
     onSignUpClick: () -> Unit,
     modifier: Modifier = Modifier,
     onSignInClick: () -> Unit,
+    navController: NavController // <-- on ajoute le navController
+) {
+    val state by uiState.collectAsState()
 
-    ) {
+    // ✅ Redirection si connecté
+    LaunchedEffect(state.isAuthenticated) {
+        if (state.isAuthenticated) {
+            navController.navigate(GraphRoute.MainGraph) {
+                popUpTo(GraphRoute.AuthGraph) { inclusive = true } // évite retour en arrière
+            }
+        }
+    }
+
     Column(
         modifier
             .fillMaxSize()
@@ -62,25 +78,18 @@ fun LoginScreen(
                     .padding(bottom = 24.dp)
             )
 
-            // Username
-            /*
-            OutlinedTextField(
-                value = "",
-                onValueChange = {},
-                label = { Text("Nom d'utilisateur") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-             */
-
             Spacer(modifier = Modifier.height(12.dp))
 
             // Email
             OutlinedTextField(
-                value = uiState.collectAsState().value.email,
+                value = state.email,
                 onValueChange = conectMail,
                 label = { Text("Adresse email") },
-                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold
+                ),
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -88,39 +97,47 @@ fun LoginScreen(
 
             // Password
             OutlinedTextField(
-                value = uiState.collectAsState().value.password,
+                value = state.password,
                 onValueChange = connectPassword,
                 label = { Text("Mot de passe") },
-                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold
+                ),
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
-
-
-
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Create Account Button
+            // Se connecter
             Button(
-                onClick = { onSignInClick },
+                onClick = { onSignInClick() }, // ✅ appel correct
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Text("Se Connecter")
+                if (state.isLoading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(20.dp),
+                        color = Color.White,
+                        strokeWidth = 2.dp
+                    )
+                } else {
+                    Text("Se Connecter")
+                }
             }
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Already have an account?
+            // Lien inscription
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Vous n'avez  un compte ? ")
+                Text("Vous n'avez pas de compte ? ")
                 Text(
-                    text = "Cree un compte",
+                    text = "Créer un compte",
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable { onSignUpClick() }
@@ -137,6 +154,7 @@ fun LoginScreen(
         )
     }
 }
+
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable

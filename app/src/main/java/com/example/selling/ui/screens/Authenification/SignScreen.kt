@@ -18,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,8 +31,11 @@ import com.example.selling.R
 import com.example.selling.ui.viewModel.AuthUiState
 import kotlinx.coroutines.flow.StateFlow
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.selling.ui.navigation.GraphRoute
 
 @Composable
 fun SignUpScreen(
@@ -41,8 +45,20 @@ fun SignUpScreen(
     onConfirmPasswordChange: (String) -> Unit,
     onSignUpClick: () -> Unit,
     onSignInClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController // ⚡️ ajouté
 ) {
+    val state by uiState.collectAsState()
+
+    // ✅ Redirection si l'utilisateur est connecté après inscription
+    LaunchedEffect(state.isAuthenticated) {
+        if (state.isAuthenticated) {
+            navController.navigate(GraphRoute.MainGraph) {
+                popUpTo(GraphRoute.AuthGraph) { inclusive = true } // empêche retour en arrière
+            }
+        }
+    }
+
     Column(
         modifier
             .fillMaxSize()
@@ -65,10 +81,14 @@ fun SignUpScreen(
 
             // ⚡ Email
             OutlinedTextField(
-                value = uiState.collectAsState().value.email,
+                value = state.email,
                 onValueChange = onEmailChange,
                 label = { Text("Adresse email") },
-                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold
+                ),
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -76,10 +96,14 @@ fun SignUpScreen(
 
             // ⚡ Password
             OutlinedTextField(
-                value = uiState.collectAsState().value.password,
+                value = state.password,
                 onValueChange = onPasswordChange,
                 label = { Text("Mot de passe") },
-                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold
+                ),
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -88,10 +112,14 @@ fun SignUpScreen(
 
             // ⚡ Confirm Password
             OutlinedTextField(
-                value = uiState.collectAsState().value.confirmPassword,
+                value = state.confirmPassword,
                 onValueChange = onConfirmPasswordChange,
                 label = { Text("Confirmer le mot de passe") },
-                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold
+                ),
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -101,11 +129,11 @@ fun SignUpScreen(
             // Bouton d'inscription
             Button(
                 onClick = onSignUpClick,
-                enabled = !uiState.collectAsState().value.isLoading,
+                enabled = !state.isLoading,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp)
             ) {
-                if (uiState.collectAsState().value.isLoading) {
+                if (state.isLoading) {
                     CircularProgressIndicator(
                         color = Color.White,
                         modifier = Modifier.size(20.dp)
@@ -116,7 +144,7 @@ fun SignUpScreen(
             }
 
             // ⚡ Message d'erreur (si existe)
-            uiState.collectAsState().value.errorMessage?.let { msg ->
+            state.errorMessage?.let { msg ->
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = msg,

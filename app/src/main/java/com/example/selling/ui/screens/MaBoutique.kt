@@ -2,6 +2,7 @@ package com.example.selling.ui.screens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -14,6 +15,7 @@ import com.example.selling.ui.navigation.GraphRoute
 import com.example.selling.ui.navigation.Screen
 import com.example.selling.ui.screens.Authenification.LoginScreen
 import com.example.selling.ui.screens.Authenification.SignUpScreen
+import com.example.selling.ui.screens.product.HomeScreen
 import com.example.selling.ui.viewModel.AuthUiState
 import com.example.selling.ui.viewModel.AuthViewModel
 import kotlinx.coroutines.flow.StateFlow
@@ -23,21 +25,26 @@ import org.koin.viewmodel.getViewModelKey
 
 @Composable
 fun BoutiqueApp() {
-
-    val authViewModel: AuthViewModel=koinViewModel <AuthViewModel>()
+    val authViewModel: AuthViewModel = koinViewModel()
     val navController = rememberNavController()
+    val authState: StateFlow<AuthUiState> = authViewModel.state
 
+    // Observe l'état d'authentification
+    val startDestination = if (authState.collectAsState().value.isAuthenticated) {
+        GraphRoute.MainGraph
+    } else {
+        GraphRoute.AuthGraph
+    }
 
-        NavHost(
+    NavHost(
         navController = navController,
-        startDestination = GraphRoute.AuthGraph,
-
+        startDestination = startDestination
     ) {
-
         authGraph(navController, authViewModel)
         mainGraph(navController)
     }
 }
+
 
 fun NavGraphBuilder.authGraph(navController: NavController,authViewModel: AuthViewModel){
 
@@ -50,7 +57,8 @@ fun NavGraphBuilder.authGraph(navController: NavController,authViewModel: AuthVi
                 conectMail = authViewModel::onEmailChange,
                 connectPassword= authViewModel::onPasswordChange,
                 onSignUpClick = { navController.navigate(Screen.SignUp) },
-                onSignInClick = { authViewModel.signIn() }
+                onSignInClick = { authViewModel.signIn() },
+                navController = navController
             )
         }
         composable<Screen.SignUp> {
@@ -60,7 +68,8 @@ fun NavGraphBuilder.authGraph(navController: NavController,authViewModel: AuthVi
                 onPasswordChange = authViewModel::onPasswordChange,
                 onConfirmPasswordChange = authViewModel::onConfirmPasswordChange,
                 onSignUpClick = { authViewModel.signUp() },
-                onSignInClick = { navController.navigate(Screen.Login) }
+                onSignInClick = { navController.navigate(Screen.Login) },
+                navController = navController
             )
 
         }
@@ -70,6 +79,8 @@ fun NavGraphBuilder.authGraph(navController: NavController,authViewModel: AuthVi
 fun NavGraphBuilder.mainGraph(navController: NavController){
     navigation<GraphRoute.MainGraph>(startDestination = Screen.Home){
         composable<Screen.Home>{
+            HomeScreen()
+
 
         }
 
