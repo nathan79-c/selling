@@ -31,6 +31,7 @@ import com.example.selling.ui.viewModel.AuthUiState
 import kotlinx.coroutines.flow.StateFlow
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun SignUpScreen(
@@ -67,7 +68,7 @@ fun SignUpScreen(
                 value = uiState.collectAsState().value.email,
                 onValueChange = onEmailChange,
                 label = { Text("Adresse email") },
-                textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -78,7 +79,7 @@ fun SignUpScreen(
                 value = uiState.collectAsState().value.password,
                 onValueChange = onPasswordChange,
                 label = { Text("Mot de passe") },
-                textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -90,7 +91,7 @@ fun SignUpScreen(
                 value = uiState.collectAsState().value.confirmPassword,
                 onValueChange = onConfirmPasswordChange,
                 label = { Text("Confirmer le mot de passe") },
-                textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
             )

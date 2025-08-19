@@ -45,7 +45,13 @@ fun NavGraphBuilder.authGraph(navController: NavController,authViewModel: AuthVi
     val authState: StateFlow<AuthUiState> = authViewModel.state
     navigation<GraphRoute.AuthGraph>(startDestination = Screen.SignUp){
         composable<Screen.Login>{
-            LoginScreen {  }
+            LoginScreen (
+                uiState = authState,
+                conectMail = authViewModel::onEmailChange,
+                connectPassword= authViewModel::onPasswordChange,
+                onSignUpClick = { navController.navigate(Screen.SignUp) },
+                onSignInClick = { authViewModel.signIn() }
+            )
         }
         composable<Screen.SignUp> {
             SignUpScreen(

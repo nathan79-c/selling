@@ -128,6 +128,9 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.androidx.compose.navigation)
 
+        // SPLASH SCREEN
+    implementation("androidx.core:core-splashscreen:1.0.0")
+
 
 
 

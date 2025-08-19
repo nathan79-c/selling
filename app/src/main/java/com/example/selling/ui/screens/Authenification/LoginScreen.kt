@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,14 +27,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.selling.R
+import com.example.selling.ui.viewModel.AuthUiState
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun LoginScreen(
+    uiState: StateFlow<AuthUiState>,
+    conectMail: (String)->Unit,
+    connectPassword: (String)->Unit,
+    onSignUpClick: () -> Unit,
     modifier: Modifier = Modifier,
-    onSignInClick: () -> Unit = {}
+    onSignInClick: () -> Unit,
 
-) {
+    ) {
     Column(
         modifier
             .fillMaxSize()
@@ -55,6 +63,7 @@ fun LoginScreen(
             )
 
             // Username
+            /*
             OutlinedTextField(
                 value = "",
                 onValueChange = {},
@@ -62,14 +71,16 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
+             */
+
             Spacer(modifier = Modifier.height(12.dp))
 
             // Email
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = uiState.collectAsState().value.email,
+                onValueChange = conectMail,
                 label = { Text("Adresse email") },
-                textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -77,10 +88,10 @@ fun LoginScreen(
 
             // Password
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = uiState.collectAsState().value.password,
+                onValueChange = connectPassword,
                 label = { Text("Mot de passe") },
-                textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(fontSize = 20.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold),
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -93,7 +104,7 @@ fun LoginScreen(
 
             // Create Account Button
             Button(
-                onClick = { /* TODO: Handle sign up */ },
+                onClick = { onSignInClick },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -112,7 +123,7 @@ fun LoginScreen(
                     text = "Cree un compte",
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.clickable { onSignInClick() }
+                    modifier = Modifier.clickable { onSignUpClick() }
                 )
             }
         }
@@ -131,6 +142,6 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreview() {
     MaterialTheme {
-        LoginScreen()
+        //LoginScreen({})
     }
 }
