@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -68,6 +69,7 @@ fun LoginScreen(
                 value = "",
                 onValueChange = {},
                 label = { Text("Adresse email") },
+                textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -78,6 +80,7 @@ fun LoginScreen(
                 value = "",
                 onValueChange = {},
                 label = { Text("Mot de passe") },
+                textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
             )
