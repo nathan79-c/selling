@@ -1,3 +1,5 @@
 package com.example.selling.data.repository
 
-class ProductRepository
+import com.google.firebase.database.DatabaseReference
+
+class ProductRepositoryImpl(database:DatabaseReference)

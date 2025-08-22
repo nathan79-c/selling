@@ -48,7 +48,8 @@ android {
 }
 
 dependencies {
-        // NAVIGATION
+        implementation(libs.firebase.database.ktx)
+    // NAVIGATION
     val nav_version = "2.9.3"
 
     // VIEWMODEL

@@ -109,5 +109,4 @@ fun ProductCard(product: Product, onClick: () -> Unit) {
 fun HomeScreenPreview() {
 
 
-
 }
