@@ -57,46 +57,7 @@ fun HomeScreen(
     var showMenu by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text("MaBoutique", fontWeight = FontWeight.Bold)
-                },
-                actions = {
-                    Box {
-                        Image(
-                            painter = painterResource(id = R.drawable.me), // image temporaire
-                            contentDescription = "Profile Picture",
-                            modifier = Modifier
-                                .size(36.dp)
-                                .clip(CircleShape)
-                                .clickable { showMenu = !showMenu }
-                        )
 
-                        DropdownMenu(
-                            expanded = showMenu,
-                            onDismissRequest = { showMenu = false }
-                        ) {
-                            DropdownMenuItem(
-                                text = { Text("Voir profil") },
-                                onClick = {
-                                    showMenu = false
-                                    onProfileClick()
-                                }
-                            )
-                            DropdownMenuItem(
-                                text = { Text("Se déconnecter") },
-                                onClick = {
-                                    showMenu = false
-                                    onLogoutClick()
-                                }
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                }
-            )
-        },
         content = { padding ->
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
