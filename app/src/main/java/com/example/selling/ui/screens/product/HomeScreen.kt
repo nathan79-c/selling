@@ -47,14 +47,10 @@ import com.example.selling.data.model.Product
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    userName: String = "Nathan",
-    profilePictureUrl: String = "", // mettre une image réelle plus tard
-    onProfileClick: () -> Unit = {},
-    onLogoutClick: () -> Unit = {},
     onProductClick: (Product) -> Unit = {},
     productList: List<Product> = sampleProducts
 ) {
-    var showMenu by remember { mutableStateOf(false) }
+
 
     Scaffold(
 
@@ -113,12 +109,5 @@ fun ProductCard(product: Product, onClick: () -> Unit) {
 fun HomeScreenPreview() {
 
 
-    HomeScreen(
-        userName = "Nathan",
-        profilePictureUrl = "",
-        onProfileClick = {},
-        onLogoutClick = {},
-        onProductClick = {},
-        productList = sampleProducts
-    )
+
 }
