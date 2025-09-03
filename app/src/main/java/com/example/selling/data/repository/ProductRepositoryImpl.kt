@@ -3,7 +3,7 @@ package com.example.selling.data.repository
 import com.example.selling.data.model.Product
 import com.example.selling.data.repository.abstract_interface.ProductRepository
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
+
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 

@@ -20,7 +20,7 @@ val myAppModules = module {
     factory { Firebase.firestore }
     viewModel { AuthViewModel(get()) }
     single<AuthRepository> {AuthRepositoryImpl(get()) }
-    single<ProductRepository> { ProductRepositoryImpl(get()) }
+    single<ProductRepository> { ProductRepositoryImpl(get(),get()) }
 
 
 }
