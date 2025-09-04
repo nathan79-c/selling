@@ -75,11 +75,23 @@ class ProductViewModel(private val productRepository: ProductRepository) : ViewM
             )
         }
     }
+
+    fun loadProductDetails(productId: String) {
+        viewModelScope.launch {
+            _uiState.value = ProductUiState.Loading
+            val result = productRepository.getProductById(productId)
+            _uiState.value = result.fold(
+                onSuccess = { product -> ProductUiState.SuccessProduct(product) },
+                onFailure = { e -> ProductUiState.Error(e.message ?: "Unknown error") }
+            )
+        }
+    }
 }
 
 sealed class ProductUiState {
     object Loading : ProductUiState()
     data class Success(val products: List<Product> = emptyList()) : ProductUiState()
     data class Error(val message: String) : ProductUiState()
+    data class SuccessProduct(val product: Product?) : ProductUiState()
     object Empty : ProductUiState()
 }

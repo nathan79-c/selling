@@ -9,6 +9,8 @@ interface ProductRepository {
     suspend fun MyAllProduct(): Result<List<Product>>
     suspend fun updateProduct(product: Product): Result<Unit>
     suspend fun deleteProduct(productId: String): Result<Unit>
+    // 🆕 Récupérer un produit par son ID
+    suspend fun getProductById(productId: String): Result<Product?>
 
 
 }

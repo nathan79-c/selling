@@ -62,4 +62,19 @@ class ProductRepositoryImpl(private val auth: FirebaseAuth,private val db: Fireb
         }
     }
 
+    // Récupérer les détails d’un produit
+    override suspend fun getProductById(productId: String): Result<Product?> {
+        return try {
+            val document = productCollection.document(productId).get().await()
+            if (document.exists()) {
+                val product = document.toObject(Product::class.java)?.copy(id = document.id)
+                Result.success(product)
+            } else {
+                Result.success(null) // produit non trouvé
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
 }
