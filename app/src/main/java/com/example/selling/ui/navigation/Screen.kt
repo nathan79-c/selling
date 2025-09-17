@@ -34,4 +34,6 @@ sealed interface Screen {
 sealed interface GraphRoute{
     @Serializable data object AuthGraph: GraphRoute
     @Serializable data object MainGraph: GraphRoute
+
+    @Serializable data object SellerGraph: GraphRoute
 }

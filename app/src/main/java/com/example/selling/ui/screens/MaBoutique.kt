@@ -37,7 +37,11 @@ import com.example.selling.ui.navigation.GraphRoute
 import com.example.selling.ui.navigation.Screen
 import com.example.selling.ui.screens.Authenification.LoginScreen
 import com.example.selling.ui.screens.Authenification.SignUpScreen
+import com.example.selling.ui.screens.product.CreateEditProductScreen
 import com.example.selling.ui.screens.product.HomeScreen
+import com.example.selling.ui.screens.product.ProductDetailScreen
+import com.example.selling.ui.screens.profil.SellerDashboardScreen
+import com.example.selling.ui.screens.profil.SellerProfileScreen
 import com.example.selling.ui.viewModel.AuthUiState
 import com.example.selling.ui.viewModel.AuthViewModel
 import kotlinx.coroutines.flow.StateFlow
@@ -171,8 +175,28 @@ fun NavGraphBuilder.mainGraph(navController: NavController){
         composable<Screen.Home>{
             HomeScreen()
 
+        }
+        composable<Screen.DetailsProduct>{
+            ProductDetailScreen()
+        }
+       composable<Screen.Seller>{
+           SellerProfileScreen()
+       }
 
+    }
+}
+
+fun NavGraphBuilder.sellerGraph(navController: NavController){
+    navigation<GraphRoute.SellerGraph>(startDestination = Screen.Dashboard){
+        composable<Screen.Dashboard> {
+            SellerDashboardScreen() { }
+        }
+        composable<Screen.CreateEditProduct> {
+            CreateEditProductScreen()
         }
 
+        composable < Screen.EditProfil>{
+            SellerProfileScreen()
+        }
     }
 }
