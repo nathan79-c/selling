@@ -48,7 +48,7 @@ android {
 }
 
 dependencies {
-        implementation(libs.firebase.database.ktx)
+
     // NAVIGATION
     val nav_version = "2.9.3"
 
@@ -75,7 +75,7 @@ dependencies {
     // FIREBASE AUTHENTIFICATION DEPENDENCIES
     implementation("com.firebaseui:firebase-ui-auth:9.0.0")
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
+    implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
 
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
@@ -84,7 +84,7 @@ dependencies {
     // Declare the dependency for the Cloud Firestore library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.firebase.firestore)
-    implementation(libs.firebase.database)
+
 
 
 

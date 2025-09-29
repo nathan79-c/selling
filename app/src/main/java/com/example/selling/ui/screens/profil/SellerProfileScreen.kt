@@ -116,14 +116,14 @@ fun SellerProductCard(product: Product, onClick: () -> Unit) {
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
+            /*Image(
                 painter = painterResource(id = product.imageRes),
                 contentDescription = product.name,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(60.dp)
                     .clip(RoundedCornerShape(6.dp))
-            )
+            ) */
             Text(
                 text = "${product.price} FCFA",
                 style = MaterialTheme.typography.labelMedium,
@@ -143,7 +143,7 @@ data class Seller(
     val profileImageRes: Int
 )
 
-@Preview(showSystemUi = true, showBackground = true)
+/*@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun SellerProfileScreenPreview() {
     val seller = Seller("Nathan Tech", R.drawable.me)
@@ -158,4 +158,4 @@ fun SellerProfileScreenPreview() {
     )
 
     SellerProfileScreen(seller = seller, products = products)
-}
+} */

@@ -41,18 +41,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.selling.R
-import com.example.selling.data.dataSource.sampleProducts
+//import com.example.selling.data.dataSource.sampleProducts
 import com.example.selling.data.model.Product
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     onProductClick: (Product) -> Unit = {},
-    productList: List<Product> = sampleProducts
+  /*  productList: List<Product> = sampleProducts */
 ) {
 
 
-    Scaffold(
+   /* Scaffold(
 
         content = { padding ->
             LazyVerticalGrid(
@@ -69,7 +69,7 @@ fun HomeScreen(
                 }
             }
         }
-    )
+    ) */
 }
 
 
@@ -83,7 +83,7 @@ fun ProductCard(product: Product, onClick: () -> Unit) {
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
-            Image(
+          /*  Image(
                 painter = painterResource(id = product.imageRes),
                 contentDescription = product.name,
                 modifier = Modifier
@@ -91,7 +91,7 @@ fun ProductCard(product: Product, onClick: () -> Unit) {
                     .height(100.dp)
                     .clip(RoundedCornerShape(8.dp)),
                 contentScale = ContentScale.Crop
-            )
+            ) */
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = product.name, fontWeight = FontWeight.Bold)
             Text(text = "${product.price} FCFA", color = Color.Gray)

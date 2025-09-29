@@ -100,14 +100,14 @@ fun ProductCard(
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
+            /*Image(
                 painter = painterResource(product.imageRes),
                 contentDescription = product.name,
                 modifier = Modifier
                     .size(60.dp)
                     .clip(RoundedCornerShape(8.dp)),
                 contentScale = ContentScale.Crop
-            )
+            ) */
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(product.name, fontWeight = FontWeight.Bold)
@@ -122,7 +122,7 @@ fun ProductCard(
         }
     }
 }
-@Preview(showSystemUi = true, showBackground = true)
+/*@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun SellerDashboardPreview() {
     val seller = Seller("Nathan", R.drawable.me)
@@ -139,4 +139,4 @@ fun SellerDashboardPreview() {
         onDeleteProduct = {},
         onEditProfile = {}
     )
-}
+} */

@@ -3,11 +3,12 @@
 
     <style name="Theme.Selling" parent="android:Theme.Material.Light.NoActionBar" />
 
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+    <style name="Theme.MySplashScreen" parent="Theme.SplashScreen">
         <!-- Set the background color -->
         <item name="windowSplashScreenBackground">@color/white</item>
         <!-- Set the icon -->
-        <item name="android:windowSplashScreenAnimatedIcon" tools:ignore="NewApi">@drawable/sellinglogo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/sellinglogo</item>
+        <item name="postSplashScreenTheme">@style/Theme.Selling</item>
         <!-- Set the theme to apply after the splash screen -->
 
     </style>

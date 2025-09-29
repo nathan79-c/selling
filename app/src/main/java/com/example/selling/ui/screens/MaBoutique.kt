@@ -175,18 +175,18 @@ fun NavGraphBuilder.mainGraph(navController: NavController){
         composable<Screen.Home>{
             HomeScreen()
 
-        }
+        }/*
         composable<Screen.DetailsProduct>{
             ProductDetailScreen()
         }
        composable<Screen.Seller>{
            SellerProfileScreen()
-       }
+       }*/
 
     }
 }
 
-fun NavGraphBuilder.sellerGraph(navController: NavController){
+/*fun NavGraphBuilder.sellerGraph(navController: NavController){
     navigation<GraphRoute.SellerGraph>(startDestination = Screen.Dashboard){
         composable<Screen.Dashboard> {
             SellerDashboardScreen() { }
@@ -199,4 +199,4 @@ fun NavGraphBuilder.sellerGraph(navController: NavController){
             SellerProfileScreen()
         }
     }
-}
+} */

@@ -125,7 +125,7 @@ fun CreateEditProductScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Button(
+      /*  Button(
             onClick = {
                 val product = Product(
                     id = initialProduct?.id ?: 0,
@@ -133,13 +133,13 @@ fun CreateEditProductScreen(
                     price = price.toIntOrNull() ?: 0,
 
                     imageRes = R.drawable.product2// temporaire
-                )
+                ) *
                 onSave(product)
             },
             modifier = Modifier.fillMaxWidth()
-        ) {
+        )  {
             Text("Enregistrer")
-        }
+        } */
     }
 }
 
